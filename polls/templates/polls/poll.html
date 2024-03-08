@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ poll }}</title>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ poll }}</h1>
+        <div class="choices">
+            <ul>
+                {% for choice in choices %}
+                <li>
+                    {{ choice }}
+                </li>
+                {% endfor %}
+                
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
