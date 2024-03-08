@@ -1,23 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ poll }}</title>
-</head>
-<body>
+{% extends 'polls/base.html' %}
+
+
+{% block title %}{{ poll }}{% endblock %}
+
+{% block content %}
     <div class="container">
         <h1>{{ poll }}</h1>
         <div class="choices">
-            <ul>
-                {% for choice in choices %}
-                <li>
-                    {{ choice }}
-                </li>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == "error" %}
+                        <p>{{ message }}</p>
+                    {% endif %}
                 {% endfor %}
-                
-            </ul>
+            {% endif %}
+            <p></p>
+
+            <form action="{% url 'vote' poll.id %}" method="POST">
+            {% csrf_token %}
+            {% for choice in choices %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                <label for="choice{{ forloop.counter }}">{{ choice }}</label><br>
+            {% endfor %}
+            <input type="submit" value="Vote">
+            </form>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

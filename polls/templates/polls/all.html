@@ -1,0 +1,19 @@
+{% extends 'polls/base.html' %}
+
+{% block title %}All polls{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="polls">
+        {% for poll in polls %}
+            <h3>{{ poll }}</h3>
+            <div class="choices">
+                {% for choice in poll.choice_set.all %}
+                    <p>{{ choice }}</p>
+                {% endfor %}
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

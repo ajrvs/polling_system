@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polls</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Polls List</h1>
-        <ul>
-            {% for poll in polls %}
-            <li class="poll">
-                <a href="{% url 'poll' poll.id %}">{{ poll }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-</body>
-</html>
+{% extends 'polls/base.html' %}
+
+
+{% block title %}Home | Polls{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>All Active Polls</h1>
+    <ul>
+        {% for poll in polls %}
+        <li class="poll">
+            <a href="{% url 'poll' poll.id %}">{{ poll }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
